@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Encrypt</string>
+    <string name="text">Text</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="key">Key</string>
+    <string name="color">Color</string>
+</resources>

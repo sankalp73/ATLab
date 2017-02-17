@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">L3-1</string>
+    <string name="ans_true">True</string>
+    <string name="ans_false">False</string>
+    <string name="score">Score</string>
+    <string name="q1">Delhi is the capital of India</string>
+    <string name="q2">Amazon is the longest river</string>
+    <string name="q3">Dubai is the capital of UAE</string>
+</resources>
