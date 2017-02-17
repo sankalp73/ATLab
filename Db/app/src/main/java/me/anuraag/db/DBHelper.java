@@ -2,26 +2,17 @@ package me.anuraag.db;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "TTEvents.db";
-    public static final String CATEGORIES_TABLE_NAME = "categories";
-    public static final String EVENTS_TABLE_NAME = "events";
-    public static final String FAV_EVENTS_TABLE_NAME = "favevents";
-    public static final String COLUMN_ID = "id";
-    public static final String CATEGORY_ID = "cid";
-    public static final String EVENT_ID = "eid";
-    public static final String DESCRIPTION = "description";
-    public static final String NAME = "name";
-    public static final String EVENT_MAX_NO = "maxno";
+    private static final String DATABASE_NAME = "Database.db";
+    private static final String TABLE_NAME = "table";
+    private static final String COLUMN_ID = "cid";
+    private static final String NAME = "name";
+    private static final String COST = "cost";
+
     private Context mContext;
 
     public DBHelper(Context context) {
@@ -31,15 +22,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF  NOT EXISTS " + CATEGORIES_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + CATEGORY_ID
-                + " INTEGER," + NAME + " TEXT," + DESCRIPTION + " TEXT);");
+        db.execSQL("CREATE TABLE IF  NOT EXISTS " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + NAME + " TEXT," + COST + " INTEGER);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + CATEGORIES_TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
+    public void insertIntoDB(Item item){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, item.getId());
+        contentValues.put(NAME, item.getName());
+        contentValues.put(COST, item.getCost());
+        db.insert(TABLE_NAME, null, contentValues);
+    }
+
+    public void getCount(){
+
+
+    }
 }
